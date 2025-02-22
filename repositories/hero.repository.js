@@ -1,74 +1,52 @@
 import Hero from "../models/hero.model.js";
+import Power from "../models/power.model.js";
+import Mission from "../models/mission.model.js";
+import { Op } from "sequelize";
 
 export async function createHero({ alias, identity, powerDate }) {
-    const hero = await Hero.create({ alias, identity, powerDate });
-    return hero;
+    return await Hero.create({ alias, identity, powerDate });
+}
+
+export async function findHeroByAlias(alias) {
+    return await Hero.findOne({ where: { alias } });
 }
 
 export async function getHeroById(id) {
-    const hero = await Hero.findByPk(id);
-    if (!hero) {
-        return null;
-    }
-
-    return hero;
-}
-
-export async function getDeletedHeroById(id) {
-    const hero = await Hero.scope("deleted").findByPk(id);
-    if (!hero) {
-        return null;
-    }
-
-    return hero;
+    return await Hero.findByPk(id);
 }
 
 export async function updateHero(id, values) {
     const hero = await getHeroById(id);
-    if (!hero) {
-        return null;
-    }
-
+    if (!hero) return null;
     return await hero.update(values);
 }
 
 export async function deleteHero(id) {
     const hero = await getHeroById(id);
-    if (!hero) {
-        return null;
-    }
-
-    return await updateHero(hero.id, { isDeleted: true });
-}
-
-export async function getAllHeroes() {
-    return await Hero.findAll();
+    if (!hero) return null;
+    return await hero.update({ isDeleted: true });
 }
 
 export async function heroExists(alias) {
-    const hero = await Hero.findOne({ where: { alias } });
+    const hero = await findHeroByAlias(alias);
     return Boolean(hero);
 }
 
-export async function heroDeletedExists(alias) {
-    const hero = await Hero.scope("deleted").findOne({ where: { alias } });
-    return Boolean(hero);
+export async function getAllHeroes() {
+    return await Hero.findAll({
+        include: [
+            { model: Power }, // powers
+            { model: Mission, through: { attributes: [] } }, // missions
+        ],
+    });
 }
 
-export async function getAllHeroesWithDeleted() {
-    await Hero.scope("withDeleted").findAll();
-}
-
-export async function getAllHeroesDeleted() {
-    await Hero.scope("deleted").findAll();
+export async function getDeletedHeroById(id) {
+    return await Hero.scope("deleted").findByPk(id);
 }
 
 export async function restoreHero(id) {
-    const deletedHero = await getDeletedHeroById(id);
-
-    if (!deletedHero) {
-        return null;
-    }
-
-    return await deletedHero.update({ isDeleted: false });
+    const hero = await getDeletedHeroById(id);
+    if (!hero) return null;
+    return await hero.update({ isDeleted: false });
 }

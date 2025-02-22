@@ -1,1 +1,1 @@
-export * as HeroController from "./hero.controller.js";
+export * as HeroController from "./hero.controller.js"

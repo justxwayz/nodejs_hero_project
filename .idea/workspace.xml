@@ -5,7 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f630d09-9a8a-41d9-8811-fd0819e1a791" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/mission.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/power.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mocks/mission.mock.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mocks/power.mock.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/mission.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/power.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/repositories/mission.repository.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/repositories/power.repository.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routers/mission.router.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routers/power.router.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/mission.service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/power.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/hero.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/hero.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/index.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/index.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/database.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/errors/api.error.js" beforeDir="false" afterPath="$PROJECT_DIR$/errors/api.error.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middlewares/error.middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/middlewares/error.middleware.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middlewares/log.middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/middlewares/log.middleware.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mocks/hero.mock.js" beforeDir="false" afterPath="$PROJECT_DIR$/mocks/hero.mock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/hero.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/hero.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/hero.repository.js" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/hero.repository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/index.repository.js" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/index.repository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routers/hero.router.js" beforeDir="false" afterPath="$PROJECT_DIR$/routers/hero.router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/hero.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/hero.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/index.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/index.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/mock.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/mock.service.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,10 +48,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "justxwayz"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/justxwayz/nodejs_hero_project.git",
+    "accountId": "6ce2385e-bf11-48b0-8c1f-5ddfcb326bad"
+  }
+}]]></component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2tPb9eWlxaafhum7rlpx5wHNX8B" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -31,8 +73,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/forma/OneDrive/Bureau/Cours/nodejs/03.api-rest",
+    "last_opened_file_path": "C:/Users/forma/OneDrive/Bureau/Cours/nodejs/nodejs_hero_project/services",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -41,6 +84,15 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\forma\OneDrive\Bureau\Cours\nodejs\nodejs_hero_project\services" />
+      <recent name="C:\Users\forma\OneDrive\Bureau\Cours\nodejs\nodejs_hero_project\routers" />
+      <recent name="C:\Users\forma\OneDrive\Bureau\Cours\nodejs\nodejs_hero_project\repositories" />
+      <recent name="C:\Users\forma\OneDrive\Bureau\Cours\nodejs\nodejs_hero_project\models" />
+      <recent name="C:\Users\forma\OneDrive\Bureau\Cours\nodejs\nodejs_hero_project\mocks" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -58,6 +110,7 @@
       <option name="presentableId" value="Default" />
       <updated>1740256506733</updated>
       <workItem from="1740256507837" duration="479000" />
+      <workItem from="1740266885203" duration="1185000" />
     </task>
     <servers />
   </component>

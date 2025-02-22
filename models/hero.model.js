@@ -1,8 +1,8 @@
-import sequelize from "../config/database.js";
 import { DataTypes } from "sequelize";
+import sequelize from "../config/database.js";
 
 const Hero = sequelize.define(
-    "heroes",
+    "Hero",
     {
         id: {
             primaryKey: true,
@@ -28,6 +28,7 @@ const Hero = sequelize.define(
         },
     },
     {
+        tableName: "heroes",
         defaultScope: {
             where: {
                 isDeleted: false,

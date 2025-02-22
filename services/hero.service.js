@@ -1,94 +1,52 @@
-import {
-    ConflictError,
-    BadRequestError,
-    NotFoundError,
-} from "../errors/api.error.js";
-import { HeroRepository } from "../repositories/index.repository.js";
-
-export async function getHeroById(id) {
-    const hero = await HeroRepository.getHeroById(id);
-
-    if (!hero) {
-        throw new NotFoundError("Le héros n'existe pas.");
-    }
-
-    return {
-        id: hero.id,
-        alias: hero.alias,
-        powerDate: hero.powerDate.slice(-4),
-    };
-}
+import * as HeroRepository from "../repositories/hero.repository.js";
+import { BadRequestError, ConflictError, NotFoundError } from "../errors/api.error.js";
 
 export async function createHero({ alias, identity, powerDate }) {
-    if (!alias || alias.length < 3 || !/^[a-zA-Z ]+$/.test(alias)) {
-        throw new BadRequestError("Alias non valide (3 caractères min, etc.)");
+    if (!alias || alias.length < 3) {
+        throw new BadRequestError("Alias invalide (3 caractères min).");
     }
-
     if (await HeroRepository.heroExists(alias)) {
-        throw new ConflictError("Le héros existe déjà (alias).");
+        throw new ConflictError("Un héros avec cet alias existe déjà.");
     }
-
-    const hero = await HeroRepository.createHero({ alias, identity, powerDate });
-
-    return hero.dataValues;
-}
-
-export async function updateHero(id, { alias, identity, powerDate }) {
-    if (!alias || alias.length < 3 || !/^[a-zA-Z ]+$/.test(alias)) {
-        throw new BadRequestError("Alias non valide (3 caractères min, etc.)");
-    }
-
-    if (await HeroRepository.heroExists(alias)) {
-        throw new ConflictError("Le héros existe déjà (alias).");
-    }
-
-    if (!await HeroRepository.getHeroById(id)) {
-        throw new NotFoundError("Le héros n'existe pas, id:");
-    }
-
-    const hero = await HeroRepository.updateHero(id, {
-        alias,
-        identity,
-        powerDate,
-    });
-
-    return hero.dataValues;
-}
-
-export async function deleteHero(id) {
-    if (!(await getHeroById(id))) {
-        throw new NotFoundError("Le héros n'existe pas.");
-    }
-
-    return await HeroRepository.deleteHero(id);
+    return await HeroRepository.createHero({ alias, identity, powerDate });
 }
 
 export async function getAllHeroes() {
-    const heroes = await HeroRepository.getAllHeroes();
+    return await HeroRepository.getAllHeroes();
+}
 
-    const formattedHeroes = heroes.map((hero) => {
-        return {
-            id: hero.id,
-            alias: hero.alias,
-            powerDate: hero.powerDate.slice(-4),
-        };
-    });
+export async function getHeroById(id) {
+    const hero = await HeroRepository.getHeroById(id);
+    if (!hero) {
+        throw new NotFoundError("Héros introuvable.");
+    }
+    return hero;
+}
 
-    return formattedHeroes;
+export async function updateHero(id, values) {
+    const existing = await HeroRepository.getHeroById(id);
+    if (!existing) {
+        throw new NotFoundError("Héros introuvable.");
+    }
+    return await HeroRepository.updateHero(id, values);
+}
+
+export async function deleteHero(id) {
+    const existing = await HeroRepository.getHeroById(id);
+    if (!existing) {
+        throw new NotFoundError("Héros introuvable.");
+    }
+    return await HeroRepository.deleteHero(id);
 }
 
 export async function restoreHero(id) {
-    const restoredHero = await HeroRepository.restoreHero(id);
-
-    if (!restoredHero) {
-        throw new NotFoundError(
-            "Le héros n'existe pas. Le héros ne peut pas être restauré."
-        );
+    const restored = await HeroRepository.restoreHero(id);
+    if (!restored) {
+        throw new NotFoundError("Impossible de restaurer. Héros introuvable ou alias déjà pris.");
     }
+    return restored;
+}
 
-    if (await HeroRepository.heroExists(restoredHero.alias)) {
-        throw new ConflictError("L'alias existe déjà. Le héros ne peut pas être restauré.")
-    }
-
-    return restoredHero;
+export async function findHeroByAlias(alias) {
+    return await HeroRepository.findHeroByAlias(alias);
 }
