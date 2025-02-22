@@ -1,0 +1,163 @@
+/* Styles globaux */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(120deg, #f3f4f6, #e5e7eb); /* Dégradé doux pour le fond */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* Animation subtile pour le chargement */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(0, 0, 0, 0.05) 80%);
+    z-index: -1;
+    animation: moveBackground 8s infinite alternate ease-in-out;
+}
+
+@keyframes moveBackground {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+/* Conteneur du logo */
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    max-width: 120px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.2));
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Titre principal */
+h1 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #1f2937;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Formulaire */
+.hero-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    background-color: #f9fafb;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    transform: translateY(-2px);
+}
+
+/* Liste des héros */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 400px;
+}
+
+li {
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #1f2937;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}

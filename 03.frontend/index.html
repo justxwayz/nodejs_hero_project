@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+<body>
+<script type="module">
+    const res = await fetch("http://localhost:3000/api/v1/heroes");
+    const data = await res.json();
+
+    document.body.textContent = JSON.stringify(data);
+
+    console.log(data)
+</script>
+</body>
+</html>
