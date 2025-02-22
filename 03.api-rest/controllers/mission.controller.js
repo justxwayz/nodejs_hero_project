@@ -1,56 +1,56 @@
+import {
+    getAllMissions,
+    getMissionById,
+    createNewMission,
+    updateMission,
+    deleteMission,
+} from "../services/mission.service.js";
 
-import * as MissionService from "../services/mission.service.js";
-
-export async function createMission(req, res, next) {
+export async function getAllMissionsCtrl(req, res, next) {
     try {
-        const { title, description } = req.body;
-        const newMission = await MissionService.createMission({ title, description });
-        res.status(201).json(newMission);
-    } catch (error) {
-        next(error);
-    }
-}
-
-export async function getAllMissions(req, res, next) {
-    try {
-        const missions = await MissionService.getAllMissions();
+        const missions = await getAllMissions();
         res.json(missions);
-    } catch (error) {
-        next(error);
+    } catch (err) {
+        next(err);
     }
 }
 
-export async function getMissionById(req, res, next) {
+export async function getMissionByIdCtrl(req, res, next) {
     try {
         const { id } = req.params;
-        const mission = await MissionService.getMissionById(id);
+        const mission = await getMissionById(id);
         res.json(mission);
-    } catch (error) {
-        next(error);
+    } catch (err) {
+        next(err);
     }
 }
 
-export async function updateMission(req, res, next) {
+export async function createMissionCtrl(req, res, next) {
     try {
-        const { id } = req.params;
         const { title, description, isCompleted } = req.body;
-        const updated = await MissionService.updateMission(id, {
-            title,
-            description,
-            isCompleted,
-        });
-        res.json(updated);
-    } catch (error) {
-        next(error);
+        const newMission = await createNewMission({ title, description, isCompleted });
+        res.json(newMission);
+    } catch (err) {
+        next(err);
     }
 }
 
-export async function deleteMission(req, res, next) {
+export async function updateMissionCtrl(req, res, next) {
     try {
         const { id } = req.params;
-        const deleted = await MissionService.deleteMission(id);
+        const updated = await updateMission(id, req.body);
+        res.json(updated);
+    } catch (err) {
+        next(err);
+    }
+}
+
+export async function deleteMissionCtrl(req, res, next) {
+    try {
+        const { id } = req.params;
+        const deleted = await deleteMission(id);
         res.json(deleted);
-    } catch (error) {
-        next(error);
+    } catch (err) {
+        next(err);
     }
 }

@@ -1,63 +1,56 @@
+import {
+    getAllPowers,
+    getPowerById,
+    createNewPower,
+    updatePower,
+    deletePower,
+} from "../services/power.service.js";
 
-import * as PowerService from "../services/power.service.js";
+export async function getAllPowersCtrl(req, res, next) {
+    try {
+        const powers = await getAllPowers();
+        res.json(powers);
+    } catch (err) {
+        next(err);
+    }
+}
 
-export async function createPower(req, res, next) {
+export async function getPowerByIdCtrl(req, res, next) {
+    try {
+        const { id } = req.params;
+        const power = await getPowerById(id);
+        res.json(power);
+    } catch (err) {
+        next(err);
+    }
+}
+
+export async function createPowerCtrl(req, res, next) {
     try {
         const { name, description, heroId } = req.body;
-        const newPower = await PowerService.createPower({ name, description, heroId });
-        res.status(201).json(newPower);
-    } catch (error) {
-        next(error);
+        const newPower = await createNewPower({ name, description, heroId });
+        res.json(newPower);
+    } catch (err) {
+        next(err);
     }
 }
 
-export async function getAllPowers(req, res, next) {
-    try {
-        const powers = await PowerService.getAllPowers();
-        res.json(powers);
-    } catch (error) {
-        next(error);
-    }
-}
-
-export async function getPowerById(req, res, next) {
+export async function updatePowerCtrl(req, res, next) {
     try {
         const { id } = req.params;
-        const power = await PowerService.getPowerById(id);
-        res.json(power);
-    } catch (error) {
-        next(error);
-    }
-}
-
-export async function updatePower(req, res, next) {
-    try {
-        const { id } = req.params;
-        const { name, description } = req.body;
-        const updated = await PowerService.updatePower(id, { name, description });
+        const updated = await updatePower(id, req.body);
         res.json(updated);
-    } catch (error) {
-        next(error);
+    } catch (err) {
+        next(err);
     }
 }
 
-export async function deletePower(req, res, next) {
+export async function deletePowerCtrl(req, res, next) {
     try {
         const { id } = req.params;
-        const deleted = await PowerService.deletePower(id);
+        const deleted = await deletePower(id);
         res.json(deleted);
-    } catch (error) {
-        next(error);
-    }
-}
-
-// Optionnel : lister les pouvoirs d'un héros
-export async function getPowersByHeroId(req, res, next) {
-    try {
-        const { heroId } = req.params;
-        const powers = await PowerService.getPowersByHeroId(heroId);
-        res.json(powers);
-    } catch (error) {
-        next(error);
+    } catch (err) {
+        next(err);
     }
 }

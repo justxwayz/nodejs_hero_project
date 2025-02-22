@@ -1,66 +1,67 @@
-// controllers/hero.controller.js
-import * as HeroService from "../services/hero.service.js";
+import {
+    getAllHeroes,
+    getHeroById,
+    createHero,
+    updateHero,
+    deleteHero,
+    restoreHero,
+} from "../services/hero.service.js";
 
-export async function getAllHeroes(req, res, next) {
+export async function getAllHeroesCtrl(req, res, next) {
     try {
-        const heroes = await HeroService.getAllHeroes();
+        const heroes = await getAllHeroes();
         res.json(heroes);
-    } catch (error) {
-        next(error);
+    } catch (err) {
+        next(err);
     }
 }
 
-export async function getHeroById(req, res, next) {
+export async function getHeroByIdCtrl(req, res, next) {
     try {
         const { id } = req.params;
-        const hero = await HeroService.getHeroById(id);
+        const hero = await getHeroById(id);
         res.json(hero);
-    } catch (error) {
-        next(error);
+    } catch (err) {
+        next(err);
     }
 }
 
-export async function createHero(req, res, next) {
+export async function createHeroCtrl(req, res, next) {
     try {
         const { alias, identity, powerDate } = req.body;
-        const newHero = await HeroService.createHero({ alias, identity, powerDate });
+        const newHero = await createHero({ alias, identity, powerDate });
         res.json(newHero);
-    } catch (error) {
-        next(error);
+    } catch (err) {
+        next(err);
     }
 }
 
-export async function updateHero(req, res, next) {
+export async function updateHeroCtrl(req, res, next) {
     try {
         const { id } = req.params;
-        const { alias, identity, powerDate } = req.body;
-        const updatedHero = await HeroService.updateHero(id, {
-            alias,
-            identity,
-            powerDate,
-        });
-        res.json(updatedHero);
-    } catch (error) {
-        next(error);
+        const updated = await updateHero(id, req.body);
+        res.json(updated);
+    } catch (err) {
+        next(err);
     }
 }
 
-export async function deleteHero(req, res, next) {
+export async function deleteHeroCtrl(req, res, next) {
     try {
         const { id } = req.params;
-        const deletedHero = await HeroService.deleteHero(id);
-        res.json(deletedHero);
-    } catch (error) {
-        next(error);
+        const deleted = await deleteHero(id);
+        res.json(deleted);
+    } catch (err) {
+        next(err);
     }
 }
 
-export async function restoreHero(req, res, next) {
+export async function restoreHeroCtrl(req, res, next) {
     try {
         const { id } = req.params;
-        const restoredHero = await HeroService.restoreHero(id);
-        res.json(restoredHero);
-    } catch (error) {
-        next(error);
+        const restored = await restoreHero(id);
+        res.json(restored);
+    } catch (err) {
+        next(err);
     }
 }

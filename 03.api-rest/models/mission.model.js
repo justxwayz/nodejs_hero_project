@@ -1,16 +1,17 @@
-// models/mission.model.js
 import { DataTypes } from "sequelize";
 import sequelize from "../config/database.js";
 
 const Mission = sequelize.define(
     "Mission",
     {
+        id: {
+            primaryKey: true,
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+        },
         title: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                len: [3, 255],
-            },
         },
         description: {
             type: DataTypes.STRING,
@@ -23,6 +24,7 @@ const Mission = sequelize.define(
     },
     {
         tableName: "missions",
+        timestamps: false,
     }
 );
 
